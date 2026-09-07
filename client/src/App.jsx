@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard'
 import ResumeBuilder from './pages/ResumeBuilder'
 import Preview from './pages/Preview'
 import Login from './pages/Login'
+import { Analytics } from "@vercel/analytics/next"
 import { ProtectedRoute } from './components/ProtectedRoute'
 
 const NotFound = () => (
@@ -24,6 +25,8 @@ const NotFound = () => (
 
 const App = () => {
   return (
+    <>
+    <Analytics />
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="login" element={<Login />} />
@@ -35,6 +38,7 @@ const App = () => {
         path="app"
         element={
           <ProtectedRoute>
+            
             <Layout />
           </ProtectedRoute>
         }
@@ -45,6 +49,7 @@ const App = () => {
 
       <Route path="*" element={<NotFound />} />
     </Routes>
+    </>
   )
 }
 
