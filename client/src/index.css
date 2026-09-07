@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+@import "tailwindcss";
+
+* {
+    font-family: "Manrope", sans-serif;
+}
+
+/* Tailwind v4 resets buttons to `cursor: default`; restore the pointer. */
+button:not(:disabled),
+[role="button"]:not(:disabled) {
+    cursor: pointer;
+}
+
+/* Thin scrollbars in the builder's scrolling panels. */
+.overflow-y-auto,
+.overflow-auto {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 transparent;
+}
+
+/*
+ * Printing directly from the page (Cmd/Ctrl-P) rather than via the Download
+ * button. The PDF export path in lib/pdfExport.js injects its own equivalent
+ * stylesheet into an off-screen iframe; this block covers the case where the
+ * user prints the visible page instead.
+ */
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    html,
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+    }
+
+    /* Undo the on-screen scaling and let the sheet fill the physical page. */
+    .resume-sheet {
+        width: 210mm !important;
+        min-height: 297mm !important;
+        height: auto !important;
+        transform: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        overflow: visible !important;
+    }
+
+    /* The wrapper reserves a scaled footprint on screen — not wanted in print. */
+    .resume-sheet-wrapper {
+        width: auto !important;
+        height: auto !important;
+    }
+
+    /* Keep entries from splitting across a page break. */
+    .resume-sheet h1,
+    .resume-sheet h2,
+    .resume-sheet h3 {
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .resume-sheet li,
+    .resume-sheet .avoid-break {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    /* Force background colours/accents to render. */
+    .resume-sheet * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
