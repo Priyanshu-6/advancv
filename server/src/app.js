@@ -11,6 +11,17 @@ import aiRoutes from './routes/aiRoutes.js'
 export const createApp = () => {
   const app = express()
 
+  app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://advancv.in',
+    'https://www.advancv.in'    // ← this was missing
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Cookie']
+  }));
+
   app.set('trust proxy', 1)
 
   // Only the configured frontend origins may call the API with credentials.
