@@ -5,7 +5,7 @@ import Dashboard from './pages/Dashboard'
 import ResumeBuilder from './pages/ResumeBuilder'
 import Preview from './pages/Preview'
 import Login from './pages/Login'
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import { ProtectedRoute } from './components/ProtectedRoute'
 
 const NotFound = () => (
